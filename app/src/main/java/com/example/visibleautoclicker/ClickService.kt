@@ -24,7 +24,7 @@ class ClickService : AccessibilityService() {
     private var running = false
     private var interval = 1000L
     private val diameter by lazy { dp(56) }
-    private val clickLoop = object : Runnable {
+    private val clickLoop: Runnable by lazy { object : Runnable {
         override fun run() {
             if (!running) return
             val p = targetParams ?: return
@@ -48,7 +48,7 @@ class ClickService : AccessibilityService() {
                 }
             }, handler)) stopClicking()
         }
-    }
+    } }
     private fun dp(value: Int) = (value * resources.displayMetrics.density).toInt()
     override fun onServiceConnected() {
         super.onServiceConnected()
